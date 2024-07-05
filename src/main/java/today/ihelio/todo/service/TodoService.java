@@ -79,11 +79,14 @@ public class TodoService {
     return dslContext.selectDistinct(TODO.HASHTAGS)
         .from(TODO)
         .where(TODO.IS_DELETED.eq(0))
-        .fetch()
-        .getValues(TODO.HASHTAGS)
-        .stream().map(s -> s.split(","))
-        .flatMap(Arrays::stream).toList();
+        .fetchSet(TODO.HASHTAGS)
+        .stream()
+        .flatMap(hashtags -> Arrays.stream(hashtags.split(","))
+            .map(String::trim))
+        .distinct()
+        .toList();
   }
+
 
 
   public List<String> getCategories() {
