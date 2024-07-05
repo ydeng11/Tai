@@ -1,0 +1,19 @@
+CREATE TABLE IF NOT EXISTS todo (
+    id VARCHAR(255) PRIMARY KEY,
+    content TEXT,
+    is_done INTEGER,
+    category VARCHAR(64),
+    hashtags TEXT,
+    created_at TIMESTAMP,
+    is_deleted INTEGER
+);
+
+CREATE TABLE IF NOT EXISTS hashtags (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name VARCHAR(64) UNIQUE
+);
+
+CREATE TABLE IF NOT EXISTS categories (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name VARCHAR(64) UNIQUE
+);
