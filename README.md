@@ -1,68 +1,48 @@
-# my-todo
+# Tai
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+Tai, meaning to-do in Japanese, is a todo app which is built upon Quarkus and ReactJS.
 
-If you want to learn more about Quarkus, please visit its website: <https://quarkus.io/>.
+![](https://i.imgur.com/5UXfv9n.png)
 
-## Running the application in dev mode
+# How to use
 
-You can run your application in dev mode that enables live coding using:
+## Run the native executable
 
-```shell script
-./mvnw compile quarkus:dev
+```shell
+./Tai-1.0.0-runner
 ```
 
-> **_NOTE:_**  Quarkus now ships with a Dev UI, which is available in dev mode only at <http://localhost:8080/q/dev/>.
+## Build your own using Quarkus CLI
 
-## Packaging and running the application
+### Install SDKMAN:
 
-The application can be packaged using:
-
-```shell script
-./mvnw package
+```shell
+curl -s "https://get.sdkman.io" | bash
+source "$HOME/.sdkman/bin/sdkman-init.sh"
 ```
 
-It produces the `quarkus-run.jar` file in the `target/quarkus-app/` directory.
-Be aware that it’s not an _über-jar_ as the dependencies are copied into the `target/quarkus-app/lib/` directory.
+### Install GraalVM
 
-The application is now runnable using `java -jar target/quarkus-app/quarkus-run.jar`.
-
-If you want to build an _über-jar_, execute the following command:
-
-```shell script
-./mvnw package -Dquarkus.package.jar.type=uber-jar
+```shell
+sdk install java 22.0.1-graal
+sdk use java 22.0.1-graal
 ```
 
-The application, packaged as an _über-jar_, is now runnable using `java -jar target/*-runner.jar`.
+### Install Quarkus
 
-## Creating a native executable
-
-You can create a native executable using:
-
-```shell script
-./mvnw package -Dnative
+```shell
+sdk install quarkus
 ```
 
-Or, if you don't have GraalVM installed, you can run the native executable build in a container using:
+### Build the native executable at the root directory of the project
 
-```shell script
-./mvnw package -Dnative -Dquarkus.native.container-build=true
+```shell
+quarkus build --native
 ```
 
-You can then execute your native executable with: `./target/my-todo-1.0.0-SNAPSHOT-runner`
+### Launch the app
 
-If you want to learn more about building native executables, please consult <https://quarkus.io/guides/maven-tooling>.
+```shell
+./target/Tai-1.0.0-runner
+```
 
-## Related Guides
-
-- REST ([guide](https://quarkus.io/guides/rest)): A Jakarta REST implementation utilizing build time processing and Vert.x. This extension is not compatible with the quarkus-resteasy extension, or any of the extensions that depend on it.
-- SmallRye OpenAPI ([guide](https://quarkus.io/guides/openapi-swaggerui)): Document your REST APIs with OpenAPI - comes with Swagger UI
-- REST Jackson ([guide](https://quarkus.io/guides/rest#json-serialisation)): Jackson serialization support for Quarkus REST. This extension is not compatible with the quarkus-resteasy extension, or any of the extensions that depend on it
-
-## Provided Code
-
-### REST
-
-Easily start your REST Web Services
-
-[Related guide section...](https://quarkus.io/guides/getting-started-reactive#reactive-jax-rs-resources)
